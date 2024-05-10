@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
+import { ThemeProvider } from "@/components/theme-provider";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -61,7 +62,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body /* className={inter.className}*/>
-        <TooltipProvider>{children}</TooltipProvider>
+        <ThemeProvider 
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
+          <TooltipProvider>{children}</TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
