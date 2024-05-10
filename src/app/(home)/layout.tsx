@@ -11,13 +11,13 @@ interface HomeLayoutProps {
 
 export default function HomeLayout({ children }: HomeLayoutProps) {
   return (
-    <div className="grid grid-cols-[200px_1px_1fr] min-h-screen">
-      <aside className="h-full w-[200px] bg-background/80 pt-4 flex flex-col justify-between sticky">
+    <div className="grid grid-cols-[200px_1px_auto]">
+      <aside className="h-screen w-[200px] bg-background/80 pt-4 flex flex-col justify-between sticky top-0 self-start">
         <div className="px-2">
           <SideBarNav items={navConfig.navItems} />
           <div className="flex items-center justify-between mt-6 px-2  text-black/80">
             <span className="text-sm font-semibold">Tags</span>
-            <Button variant="secondary" className="p-0 h-2">
+            <Button variant="ghost" className="p-0 h-2">
               <Plus size={16} />
             </Button>
           </div>
@@ -34,8 +34,8 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
           </div>
         </div>
       </aside>
-      <Separator orientation="vertical" />
-      <main className="w-full overflow-hidden flex flex-col gap-4 p-4 lg:gap-6 lg:p-6">{children}</main>
+      <Separator orientation="vertical"/>
+      <main className="w-full flex flex-col gap-4 p-4 lg:gap-6 lg:p-6">{children}</main>
     </div>
   );
 }
