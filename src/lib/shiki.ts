@@ -16,6 +16,18 @@ export async function highlight(code: string, lang: BundledLanguage, theme: Bund
   const html = highlighter.codeToHtml(code, {
     lang,
     theme,
+    transformers: [
+      {
+        pre(hast) {
+          this.addClassToHast(hast, 'scroller')
+        },
+        preprocess(code) {
+          if(code.endsWith('\n')) {
+            return `${code}\n`
+          }
+        }
+      }
+    ]
   });
 
   return html;
