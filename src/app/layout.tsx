@@ -4,6 +4,7 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -62,13 +63,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body /* className={inter.className}*/>
-        <ThemeProvider 
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
+        <Script
+          id="script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function() {
+          const root = document.documentElement;
+          const pre = document.querySelector(".sn-code-block");
+          const dark = getComputedStyle(pre).getPropertyValue("--shiki-dark-bg");
+          root.style.setProperty('--background', dark)})()`,
+          }}
+        />
       </body>
     </html>
   );

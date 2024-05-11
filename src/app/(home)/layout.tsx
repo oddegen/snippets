@@ -1,20 +1,16 @@
-"use client";
-
 import SideBarNav from "@/components/sidebar-nav";
 import { navConfig } from "@/config/nav";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Moon, Plus, Sun } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { useTheme } from "next-themes";
+import ThemeToggle from "@/components/theme-toggle";
 
 interface HomeLayoutProps {
   children: React.ReactNode;
 }
 
 export default function HomeLayout({ children }: HomeLayoutProps) {
-  const { theme, setTheme } = useTheme();
-
   return (
     <div className="grid grid-cols-[200px_1px_auto]">
       <aside className="h-screen w-[200px] bg-background/80 pt-4 flex flex-col justify-between sticky top-0 self-start">
@@ -33,25 +29,7 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
             <Link href="/about" className="text-xs font-semibold">
               About
             </Link>
-            {theme === "light" ? (
-              <Button
-                variant="outline"
-                size="icon"
-                className="border-none"
-                onClick={() => setTheme("dark")}
-              >
-                <Moon className="h-6 w-6" />
-              </Button>
-            ) : (
-              <Button
-                variant="outline"
-                size="icon"
-                className="border-none"
-                onClick={() => setTheme("light")}
-              >
-                <Sun className="h-6 w-6" />
-              </Button>
-            )}
+            <ThemeToggle />
           </div>
         </div>
       </aside>
