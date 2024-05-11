@@ -10,7 +10,7 @@ async function getSnippets(userId?: string) {
       title: "Hello World",
       body: `const hello = "helloworld"`,
       updatedAt: new Date(),
-      tags: ["js"],
+      tags: ["Javascript", "News", "Coding", "Tech"],
       language: "javascript",
     },
     {
@@ -25,7 +25,7 @@ async function getSnippets(userId?: string) {
       })
     }`,
       updatedAt: new Date(),
-      tags: ["ts"],
+      tags: ["Typescript"],
       language: "typescript",
     },
     {
@@ -35,7 +35,73 @@ async function getSnippets(userId?: string) {
       params: { postId: string }
     }`,
       updatedAt: new Date(),
-      tags: ["ts"],
+      tags: ["Typescript"],
+      language: "typescript",
+    },
+    {
+      slug: "1",
+      title: "Hello World",
+      body: `const hello = "helloworld"`,
+      updatedAt: new Date(),
+      tags: ["Javascript"],
+      language: "javascript",
+    },
+    {
+      slug: "2",
+      title: "Code...",
+      body: `async function getPostForUser(postId: Post["id"], userId: User["id"]) {
+      return await db.post.findFirst({
+        where: {
+          id: postId,
+          authorId: userId,
+        },
+      })
+    }`,
+      updatedAt: new Date(),
+      tags: ["Typescript"],
+      language: "typescript",
+    },
+    {
+      slug: "3",
+      title: "interfaces",
+      body: `interface EditorPageProps {
+      params: { postId: string }
+    }`,
+      updatedAt: new Date(),
+      tags: ["Typescript"],
+      language: "typescript",
+    },
+    {
+      slug: "1",
+      title: "Hello World",
+      body: `const hello = "helloworld"`,
+      updatedAt: new Date(),
+      tags: ["Javascript"],
+      language: "javascript",
+    },
+    {
+      slug: "2",
+      title: "Code...",
+      body: `async function getPostForUser(postId: Post["id"], userId: User["id"]) {
+      return await db.post.findFirst({
+        where: {
+          id: postId,
+          authorId: userId,
+        },
+      })
+    }`,
+      updatedAt: new Date(),
+      tags: ["Typescript"],
+      language: "typescript",
+    },
+    {
+      slug: "3",
+      title: "interfaces",
+      body: `interface EditorPageProps {
+      params: { postId: string }
+    }`,
+      updatedAt: new Date(),
+      tags: ["Typescript"],
       language: "typescript",
     },
   ];
@@ -49,10 +115,13 @@ export default async function Home() {
 
   return (
     <>
-      <MainNav />
-      <div className="grid gap-4 md:grid-cols-4 md:gap-6">
         {snippets.length !== 0 ? (
-          snippets.map((snippet, idx) => <SnippetCard key={idx} snippet={snippet} />)
+          <>
+            <MainNav />
+            <div className="grid gap-4 md:grid-cols-4 md:gap-6 grid-rows-2">
+                {snippets.map((snippet, idx) => <SnippetCard key={idx} snippet={snippet} />)}
+            </div>
+          </>
         ) : (
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
             <div className="flex flex-col items-center gap-1 text-center">
@@ -61,7 +130,6 @@ export default async function Home() {
             </div>
           </div>
         )}
-      </div>
     </>
   );
 }
