@@ -39,10 +39,10 @@ export function Search({ className, placeholder, searchParam }: SearchProps) {
         placeholder={placeholder}
         className={cn(
           className,
-          "peer h-8 py-2 px-3 w-64 rounded-xl text-sm outline-2 placeholder:text-gray-500 border-gray-200 focus:border-gray-600"
+          "peer h-7 py-2 px-3 w-64 rounded-lg text-sm placeholder:text-sm focus-visible:outline-0 placeholder:text-gray-500 border-gray-200 focus-visible:border-gray-600 focus-visible:ring-1 focus-visible:ring-offset-0"
         )}
         onChange={(e) => handleSearch(e.target.value)}
-        defaultValue={searchParams.get("sn")?.toString()}
+        defaultValue={searchParams.get(searchParam)?.toString()}
       />
       <SearchIcon className="text-gray-500 w-[18px] h-[18px] peer-focus:text-gray-900" />
     </div>

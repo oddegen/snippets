@@ -13,7 +13,7 @@ interface HomeLayoutProps {
 export default function HomeLayout({ children }: HomeLayoutProps) {
   return (
     <div className="grid grid-cols-[200px_1px_auto]">
-      <aside className="h-screen w-[200px] bg-background/80 pt-4 flex flex-col justify-between sticky top-0 self-start">
+      <aside className="h-screen w-[200px] bg-background/80 pt-8 flex flex-col justify-between sticky top-0 self-start">
         <div className="px-2">
           <SideBarNav items={navConfig.navItems} />
           <div className="flex items-center justify-between mt-6 px-2  text-black/80">
@@ -34,7 +34,7 @@ export default function HomeLayout({ children }: HomeLayoutProps) {
         </div>
       </aside>
       <Separator orientation="vertical" />
-      <main className="w-full flex flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+      <main className="w-full flex flex-col gap-4 p-4 lg:gap-6 lg:p-6 pt-6 lg:pt-8">
         {children}
       </main>
     </div>
