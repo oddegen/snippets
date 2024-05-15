@@ -1,3 +1,4 @@
+import Main from "@/components/main";
 import MainNav from "@/components/main-nav";
 import SnippetCard from "@/components/snippet-card";
 
@@ -117,10 +118,11 @@ export default async function Home() {
     <>
         {snippets.length !== 0 ? (
           <>
-            <MainNav />
+          <Main>
             <div className="grid gap-4 md:grid-cols-4 md:gap-6 grid-rows-2">
                 {snippets.map((snippet, idx) => <SnippetCard key={idx} snippet={snippet} />)}
             </div>
+            </Main>
           </>
         ) : (
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
