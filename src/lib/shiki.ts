@@ -32,7 +32,7 @@ export default async function highlight(
     transformers: [
       {
         pre(hast) {
-          this.addClassToHast(hast, "scroller, sn-code-block");
+          this.addClassToHast(hast, "scroller, sn-bg-transparent");
         },
         preprocess(code) {
           if (code.endsWith("\n")) {
