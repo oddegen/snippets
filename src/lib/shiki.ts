@@ -15,7 +15,7 @@ export default async function highlight(
   if (!highlighter) {
     highlighter = await getHighlighter({
       langs: [lang],
-      themes: [...theme, "nord"],
+      themes: [...theme, "nord", "vitesse-black", "vitesse-light"],
     });
   }
 
@@ -26,8 +26,8 @@ export default async function highlight(
   const html = highlighter.codeToHtml(code, {
     lang,
     themes: {
-      light: "github-light",
-      dark: "nord",
+      light: "vitesse-light",
+      dark: "vitesse-black",
     },
     transformers: [
       {
