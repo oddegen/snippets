@@ -65,23 +65,12 @@ export default function RootLayout({
       <body /* className={inter.className}*/>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
           <TooltipProvider>{children}</TooltipProvider>
         </ThemeProvider>
-        <Script
-          id="script"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function() {
-          const root = document.documentElement;
-          const pre = document.querySelector(".sn-code-block");
-          const dark = getComputedStyle(pre).getPropertyValue("--shiki-dark-bg");
-          root.style.setProperty('--background', dark)})()`,
-          }}
-        />
       </body>
     </html>
   );
