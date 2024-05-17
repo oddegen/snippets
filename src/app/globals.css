@@ -85,8 +85,11 @@ html.dark .shiki span {
 }
 
 .scroller {
+  overflow-x: hidden;
+}
+
+.scroller:hover {
   overflow-x: scroll;
-  scrollbar-width: none;
   scrollbar-gutter: stable both-edges;
 }
 

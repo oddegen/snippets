@@ -1,8 +1,9 @@
 import Main from "@/components/main";
-import MainNav from "@/components/main-nav";
-import SnippetCard from "@/components/snippet-card";
+import { LayoutType } from "@/components/main-nav";
 
 import { Button } from "@/components/ui/button";
+import {CreateCahchedHighlighter} from "@/lib/shiki";
+import { cookies } from "next/headers";
 
 async function getSnippets(userId?: string) {
   const snippets = [
@@ -113,17 +114,30 @@ async function getSnippets(userId?: string) {
 export default async function Home() {
   // const user = getCurrentUser()
   const snippets = await getSnippets();
+  const highlighter = await CreateCahchedHighlighter({themes: {
+    dark: "vitesse-dark",
+    light: "vitesse-light"
+  }});
+  const highlightedSnippets = await Promise.all(snippets.map((async (snippet) => {
+      const substring = snippet.body.trim().substring(0, 50);
+      const highlightedBody = await highlighter.highlight(substring, snippet.language, {
+        attributes: {
+          class: "scroller sn-bg-transparent"
+        }
+      });
+      return {
+        ...snippet,
+        highlightedBody
+      };
+    })))
+    
+
+  const initialLayout = cookies().get("layout")?.value;
 
   return (
     <>
         {snippets.length !== 0 ? (
-          <>
-          <Main>
-            <div className="grid gap-4 md:grid-cols-4 md:gap-6 grid-rows-2">
-                {snippets.map((snippet, idx) => <SnippetCard key={idx} snippet={snippet} />)}
-            </div>
-            </Main>
-          </>
+          <Main initialLayout={initialLayout as LayoutType || "grid2x2"} snippets={highlightedSnippets} />
         ) : (
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
             <div className="flex flex-col items-center gap-1 text-center">

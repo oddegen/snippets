@@ -1,22 +1,19 @@
-"use client"
-
 import { Search } from "@/components/search";
-import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 
-export type LayoutIconType = keyof Pick<typeof Icons, "grid2x2" | "grid3x3" | "listFilter">
+export type LayoutType = keyof Pick<typeof Icons, "grid2x2" | "grid3x3" | "listFilter">
 
-type LayoutIconArrayType = Array<LayoutIconType>
+type LayoutArrayType = Array<LayoutType>
 
 interface MainNavProps {
-  toggleValue: LayoutIconType
-  setToggleValue: (value: LayoutIconType) => void
+  toggleValue: LayoutType
+  setToggleValue: (value: LayoutType) => void
 }
 
 export default function MainNav({toggleValue, setToggleValue}: MainNavProps) {
 
-  const LayoutIcons: LayoutIconArrayType = ["grid2x2", "grid3x3", "listFilter"]
+  const LayoutIcons: LayoutArrayType = ["grid2x2", "grid3x3", "listFilter"]
 
   return (
     <div className="flex items-center">
@@ -24,7 +21,7 @@ export default function MainNav({toggleValue, setToggleValue}: MainNavProps) {
       <div className="flex gap-2">
         <ToggleGroup type="single" value={toggleValue} onValueChange={(value) => {
           if(value) {
-            setToggleValue(value as LayoutIconType)}
+            setToggleValue(value as LayoutType)}
           }
         }>
 
