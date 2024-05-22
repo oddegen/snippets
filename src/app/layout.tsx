@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import "./globals.css";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/theme-provider";
-import Script from "next/script";
+import { LayoutProvider } from "@/components/layout-provider";
+import { cookies } from "next/headers";
+import { LayoutType } from "@/components/main-nav";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -60,6 +61,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const initialLayout = cookies().get("layout")?.value;
+
   return (
     <html lang="en">
       <body /* className={inter.className}*/>
@@ -69,7 +73,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider>{children}</TooltipProvider>
+          <LayoutProvider initialLayout={initialLayout as LayoutType}>{children}</LayoutProvider>
         </ThemeProvider>
       </body>
     </html>

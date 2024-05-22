@@ -1,11 +1,10 @@
-import Main from "@/components/main";
-import { LayoutType } from "@/components/main-nav";
-
+import SnippetsList from "@/components/snippets-list";
+import MainNav from "@/components/main-nav";
 import { Button } from "@/components/ui/button";
 import {CreateCahchedHighlighter} from "@/lib/shiki";
-import { cookies } from "next/headers";
 
 async function getSnippets(userId?: string) {
+  "use server"
   const snippets = [
     {
       slug: "1",
@@ -108,12 +107,6 @@ async function getSnippets(userId?: string) {
     },
   ];
 
-  return snippets;
-}
-
-export default async function Home() {
-  // const user = getCurrentUser()
-  const snippets = await getSnippets();
   const highlighter = await CreateCahchedHighlighter({themes: {
     dark: "vitesse-dark",
     light: "vitesse-light"
@@ -130,14 +123,22 @@ export default async function Home() {
         highlightedBody
       };
     })))
-    
 
-  const initialLayout = cookies().get("layout")?.value;
+    return highlightedSnippets;
+}
+
+export default async function Home() {
+  // const user = getCurrentUser()
+  const snippets = await getSnippets();
+  
 
   return (
     <>
         {snippets.length !== 0 ? (
-          <Main initialLayout={initialLayout as LayoutType || "grid2x2"} snippets={highlightedSnippets} />
+          <>
+            <MainNav />
+            <SnippetsList initialSnippets={snippets} />
+          </>
         ) : (
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
             <div className="flex flex-col items-center gap-1 text-center">

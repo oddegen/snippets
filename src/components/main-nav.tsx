@@ -1,27 +1,27 @@
+"use client"
+
 import { Search } from "@/components/search";
 import { Icons } from "@/components/icons";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
+import { useContext } from "react";
+import { LayoutContext } from "@/components/layout-provider";
 
 export type LayoutType = keyof Pick<typeof Icons, "grid2x2" | "grid3x3" | "listFilter">
 
 type LayoutArrayType = Array<LayoutType>
 
-interface MainNavProps {
-  toggleValue: LayoutType
-  setToggleValue: (value: LayoutType) => void
-}
-
-export default function MainNav({toggleValue, setToggleValue}: MainNavProps) {
-
+export default function MainNav() {
+  const {layoutToggleValue, setLayoutToggleValue} = useContext(LayoutContext);
   const LayoutIcons: LayoutArrayType = ["grid2x2", "grid3x3", "listFilter"]
 
   return (
     <div className="flex items-center">
       <Search className="mx-auto" placeholder="Search Snippets..." searchParam="snippet" />
       <div className="flex gap-2">
-        <ToggleGroup type="single" value={toggleValue} onValueChange={(value) => {
+        <ToggleGroup type="single" value={layoutToggleValue} onValueChange={(value) => {
           if(value) {
-            setToggleValue(value as LayoutType)}
+            setLayoutToggleValue(value as LayoutType)
+            }
           }
         }>
 
