@@ -7,6 +7,8 @@ import { SearchIcon } from "lucide-react";
 import { Label } from "./ui/label";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import {useDebouncedCallback} from 'use-debounce';
+
 interface SearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   searchParam: string
 }
@@ -16,7 +18,7 @@ export function Search({ className, placeholder, searchParam }: SearchProps) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  function handleSearch(term: string) {
+  const handleSearch = useDebouncedCallback((term: string) => {
     const queryParam = new URLSearchParams(searchParams);
 
     if (term) {
@@ -26,7 +28,7 @@ export function Search({ className, placeholder, searchParam }: SearchProps) {
     }
 
     replace(`${pathname}?${queryParam.toString()}`);
-  }
+  }, 300);
 
   return (
     <div className={cn(className, "flex gap-2 items-center")}>

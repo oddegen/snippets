@@ -16,7 +16,7 @@ export default function MainNav() {
 
   return (
     <div className="flex items-center">
-      <Search className="mx-auto" placeholder="Search Snippets..." searchParam="snippet" />
+      <Search className="mx-auto" placeholder="Search Snippets..." searchParam="q" />
       <div className="flex gap-2">
         <ToggleGroup type="single" value={layoutToggleValue} onValueChange={(value) => {
           if(value) {

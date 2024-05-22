@@ -15,16 +15,13 @@ interface SnippetViewProps {
     highlightedBody: string;
   };
 
-  layout: LayoutType;
+  layout?: LayoutType;
 }
 
 export default function SnippetView({ snippet, layout}: SnippetViewProps) {  
-  if(layout === "grid2x2") {
     return (
       <SnippetCard snippet={snippet} />
-    );
-  }
-
+    )
 }
 
 interface SnippetCardProps {
@@ -56,11 +53,12 @@ function SnippetCard({snippet}: SnippetCardProps) {
         style={{ scrollbarWidth: "none" }}
       >
         <div className="text-xs text-muted-foreground whitespace-nowrap">
-          {snippet.updatedAt.toLocaleDateString("en-US", {
+          {/* {snippet.updatedAt.toLocaleDateString("en-US", {
             month: "long",
             day: "numeric",
             year: "numeric",
-          })}
+          })} */}
+          May 10, 2002
         </div>
         {snippet.tags.length !== 0 && (
           <div className="flex gap-2 items-center text-sm">
