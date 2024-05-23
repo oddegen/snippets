@@ -2,8 +2,9 @@ import SideBarNav from "@/components/sidebar-nav";
 import { navConfig } from "@/config/nav";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Moon, Plus} from "lucide-react";
+import { Plus } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import ThemeToggle from "@/components/theme-toggle";
 
 interface HomeLayoutProps {
   children: React.ReactNode;
@@ -11,31 +12,31 @@ interface HomeLayoutProps {
 
 export default function HomeLayout({ children }: HomeLayoutProps) {
   return (
-    <div className="grid grid-cols-[200px_1px_1fr] min-h-screen">
-      <aside className="h-full w-[200px] bg-background/80 pt-4 flex flex-col justify-between sticky">
+    <div className="grid grid-cols-[200px_1px_auto]">
+      <aside className="h-screen w-[200px] bg-background/80 pt-8 flex flex-col justify-between sticky top-0 self-start">
         <div className="px-2">
           <SideBarNav items={navConfig.navItems} />
           <div className="flex items-center justify-between mt-6 px-2  text-black/80">
             <span className="text-sm font-semibold">Tags</span>
-            <Button variant="secondary" className="p-0 h-2">
+            <Button variant="ghost" className="p-0 h-2">
               <Plus size={16} />
             </Button>
           </div>
         </div>
         <div>
           <Separator />
-          <div className="flex items-center justify-between w-full px-2 mt-1">
+          <div className="flex items-center justify-between w-full px-2 my-1">
             <Link href="/about" className="text-xs font-semibold">
               About
             </Link>
-            <Button variant="link" className="p-0">
-              <Moon className="h-min" />
-            </Button>
+            <ThemeToggle />
           </div>
         </div>
       </aside>
       <Separator orientation="vertical" />
-      <main className="w-full overflow-hidden flex flex-col gap-4 p-4 lg:gap-6 lg:p-6">{children}</main>
+      <main className="w-full flex flex-col gap-4 p-4 lg:gap-6 lg:p-6 pt-6 lg:pt-8">
+        {children}
+      </main>
     </div>
   );
 }
