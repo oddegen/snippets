@@ -20,6 +20,7 @@ export function Search({ className, placeholder, searchParam }: SearchProps) {
 
   const handleSearch = useDebouncedCallback((term: string) => {
     const queryParam = new URLSearchParams(searchParams);
+    queryParam.set("page", "1");
 
     if (term) {
       queryParam.set(searchParam, term);
