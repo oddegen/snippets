@@ -2,16 +2,10 @@ import SnippetsList from "@/components/snippets-list";
 import MainNav from "@/components/main-nav";
 import { Button } from "@/components/ui/button";
 
-<<<<<<< Updated upstream
-export default async function Home() {
-  // const user = getCurrentUser()
-  const res = await fetch("http://localhost:3000/api")
-  const snippets = await res.json();
-  
-=======
 interface HomeProps {
-  searchParams: {
-    query: string;
+  searchParams?: {
+    q?: string;
+    page?: number;
   }
 }
 
@@ -20,15 +14,14 @@ export default async function Home({searchParams}: HomeProps) {
   const res = await fetch("http://localhost:3000/api");
   const initialSnippets = await res.json();
 
-  console.log(searchParams);  
->>>>>>> Stashed changes
+  const query = searchParams?.q || '';
 
   return (
     <>
         {initialSnippets.length !== 0 ? (
           <>
             <MainNav />
-            <SnippetsList initialSnippets={initialSnippets} />
+            <SnippetsList initialSnippets={initialSnippets} totalPages={3} query={query} />
           </>
         ) : (
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
