@@ -53,18 +53,18 @@ export default function SnippetsList({initialSnippets, totalPages, query}) {
 
     return (
         <>        
-            <div className="grid gap-4 md:grid-cols-4 md:gap-6">
+            <div className="grid gap-4 md:grid-cols-4 md:gap-6 py-4 lg:py-6">
                 {snippets.map((snippet, idx) => (
                     <SnippetView key={idx} snippet={snippet} />
             ))}
 
-            {loading && (
+            {/* {loading && (
                 new Array(3).fill(0).map((_, idx) => (
                     <Skeleton key={idx} className="w-auto h-auto" />
                 ))
-            )}
+            )} */}
             </div>
-            <div ref={ref}>{`${inView} ${end ? "cant load more" : ""}`}</div>
+            {/* <div ref={ref}>{`${inView} ${end ? "cant load more" : ""}`}</div> */}
         </>
     )
 }

@@ -21,7 +21,9 @@ export default async function Home({searchParams}: HomeProps) {
         {initialSnippets.length !== 0 ? (
           <>
             <MainNav />
-            <SnippetsList initialSnippets={initialSnippets} totalPages={3} query={query} />
+            <div className="container relative">
+              <SnippetsList initialSnippets={initialSnippets} totalPages={3} query={query} />
+            </div>
           </>
         ) : (
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">

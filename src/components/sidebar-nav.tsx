@@ -22,7 +22,7 @@ export default function SideBarNav({ items }: SideBarNavProps) {
                   <Link
                     key={idx}
                     href={item.href || "#"}
-                    className="flex px-2 py-1 gap-2 items-center hover:bg-gray-200 hover:rounded-lg text-lg font-medium transition-colors"
+                    className="flex px-2 py-1 gap-2 items-center hover:bg-muted rounded-lg text-lg font-medium transition-colors"
                   >
                     <Icon className={"h-4 w-4"} />
                     <span className="text-sm">{item.title}</span>

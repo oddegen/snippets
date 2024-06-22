@@ -1,8 +1,6 @@
-import { CreateCahchedHighlighter } from "@/lib/shiki";
-import { NextRequest, NextResponse } from "next/server";
+import { Editor } from "@/components/editor";
 
-export async function GET(req: NextRequest) {
-  const snippets = [
+const snippets = [
     {
       slug: "1",
       title: "Arrays",
@@ -167,46 +165,13 @@ print_r($doubled);
     }
   ];
 
-  const inputValue = req.nextUrl.searchParams.get("q") || "";
+export default function Page() {
 
-  console.log("q:", inputValue);
 
-  const filteredSnippets = snippets.filter((snippet) => {
-    const searchterm = inputValue.toLowerCase();
 
-    if (
-      searchterm.trim().length == 0 ||
-      snippet.title.trim().toLowerCase().includes(searchterm) ||
-      snippet.body.trim().toLowerCase().includes(searchterm)
-    ) {
-      return snippet;
-    }
-  });
-
-  const highlighter = await CreateCahchedHighlighter({
-    themes: {
-      dark: "vitesse-dark",
-      light: "vitesse-light",
-    },
-  });
-  const highlightedSnippets = await Promise.all(
-    filteredSnippets.map(async (snippet) => {
-      const substring = snippet.body.trim().substring(0, 50);
-      const highlightedBody = await highlighter.highlight(
-        substring,
-        snippet.language,
-        {
-          attributes: {
-            class: "scroller sn-bg-transparent",
-          },
-        }
-      );
-      return {
-        ...snippet,
-        highlightedBody,
-      };
-    })
-  );
-
-  return new NextResponse(JSON.stringify(highlightedSnippets));
+    return (
+        <Editor 
+            snippet={snippets[0]}
+        />
+    )
 }

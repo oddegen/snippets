@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -7,7 +7,7 @@ import { LayoutProvider } from "@/components/layout-provider";
 import { cookies } from "next/headers";
 import { LayoutType } from "@/components/main-nav";
 
-// const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -66,7 +66,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body /* className={inter.className}*/>
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
