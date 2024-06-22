@@ -171,7 +171,8 @@ export default function Page() {
 
     return (
         <Editor 
-            snippet={snippets[0]}
+            content={snippets[4]["body"]}
+            language={snippets[4]["language"]}
         />
     )
 }
